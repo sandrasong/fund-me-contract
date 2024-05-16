@@ -8,6 +8,10 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { deploy, log } = deployments
   const { deployer } = await getNamedAccounts()
   const chainId = network.config.chainId
+  const ethUsdPriceFeedAddress =
+    networkConfig[chainId as keyof object]["ethUsdPriceFeedAddress"]
+
+  // Deploy mock for local testing
 
   const fundMe = await deploy("FundMe", {
     from: deployer,
