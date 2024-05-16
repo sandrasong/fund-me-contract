@@ -5,7 +5,6 @@ const networkConfig: object = {
   },
   31337: {
     name: "localhost",
-    ethUsdPriceFeedAddress: "",
   },
 }
 

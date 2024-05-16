@@ -1,23 +1,30 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
 import { network } from "hardhat"
-import { networkConfig } from "../helper-hardhat-config"
+import { networkConfig, developmentChains } from "../helper-hardhat-config"
 
 const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
   const { getNamedAccounts, deployments } = hre
-  const { deploy, log } = deployments
+  const { deploy, log, get } = deployments
   const { deployer } = await getNamedAccounts()
   const chainId = network.config.chainId
-  const ethUsdPriceFeedAddress =
-    networkConfig[chainId as keyof object]["ethUsdPriceFeedAddress"]
 
-  // Deploy mock for local testing
+  let ethUsdPriceFeedAddress
+  if (developmentChains.includes(network.name)) {
+    // Deploy mock for local testing
+    const ethUsdAggregator = await get("MockV3Aggregator")
+    ethUsdPriceFeedAddress = ethUsdAggregator.address
+  } else {
+    ethUsdPriceFeedAddress =
+      networkConfig[chainId as keyof object]["ethUsdPriceFeedAddress"]
+  }
 
   const fundMe = await deploy("FundMe", {
     from: deployer,
-    args: [],
+    args: [ethUsdPriceFeedAddress],
     log: true,
   })
+  log("--------------------------")
 }
 
 export default func
