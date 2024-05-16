@@ -9,4 +9,6 @@ const networkConfig: object = {
   },
 }
 
-export { networkConfig }
+const developmentChains = ["hardhat", "localhost"]
+
+export { networkConfig, developmentChains }
