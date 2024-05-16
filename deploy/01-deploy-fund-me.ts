@@ -23,6 +23,8 @@ const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
     from: deployer,
     args: [ethUsdPriceFeedAddress],
     log: true,
+    waitConfirmations:
+      networkConfig[chainId as keyof object]["blockConfirmations"] || 1,
   })
   log("--------------------------")
 }
