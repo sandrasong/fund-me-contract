@@ -1,10 +1,9 @@
 import { HardhatRuntimeEnvironment } from "hardhat/types"
 import { DeployFunction } from "hardhat-deploy/types"
-import { network } from "hardhat"
+import { network, getNamedAccounts, deployments } from "hardhat"
 import { networkConfig, developmentChains } from "../helper-hardhat-config"
 
 const func: DeployFunction = async (hre: HardhatRuntimeEnvironment) => {
-  const { getNamedAccounts, deployments } = hre
   const { deploy, log, get } = deployments
   const { deployer } = await getNamedAccounts()
   const chainId = network.config.chainId

@@ -18,6 +18,8 @@ contract FundMe {
   // Type declarations
   using PriceConverter for uint256;
 
+  event Funded(address indexed from, uint256 amount);
+
   // State variables
   mapping(address => uint256) private s_addressToAmountFunded;
   address[] private s_funders;

@@ -13,7 +13,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 })
 
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
-const SEPOLIA_PRIVATE_KEY = String(process.env.SEPOLIA_PRIVATE_KEY)
+const SEPOLIA_PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY as string
 
 const config: HardhatUserConfig = {
   solidity: {
