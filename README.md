@@ -1,13 +1,41 @@
-# Sample Hardhat Project
+# Fund me contract with Hardhat
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+This is a FCC web3 code camp project. It allows people to crowdfunding, and owner to withdraw the fund.
 
-Try running some of the following tasks:
+### Deploying the contract by:
 
 ```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
+npx hardhat deploy
+```
+
+### Deploying to localhost:
+```shell
 npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
+```
+then, run command in another terminal window:
+```shell
+npx hardhat deploy --network localhost
+```
+
+### Deploying to Sepolia testnet:
+```shell
+npx hardhat deplopy --network sepolia
+```
+### Scripts
+```shell
+npx hardhat run scripts/fund.ts --network localhost
+```
+or
+```shell
+npx hardhat run scripts/withdraw.ts --network localhost
+```
+### Testing
+Unit test
+```shell
+npm run test
+```
+
+Staging test on testnet
+```shell
+npm run test:staging
 ```

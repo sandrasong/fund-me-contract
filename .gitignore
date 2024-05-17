@@ -4,6 +4,9 @@ node_modules
 # Hardhat files
 /cache
 /artifacts
+/deployments
+.DS_Store
+gas-report.txt
 
 # TypeChain files
 /typechain
